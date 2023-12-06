@@ -7,6 +7,12 @@
 replicaCount: 1
 revisionHistoryLimit: 3
 
+env:
+  botToken: ""
+  getGeoApiKey: ""
+  redisBaseUrl: ""
+  databaseUrl: ""
+
 image:
   repository: registry.anttek.io/kapusta/telegram-currency-converter-bot
   pullPolicy: IfNotPresent

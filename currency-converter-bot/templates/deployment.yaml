@@ -17,5 +17,49 @@ spec:
       containers:
         - name: {{ .Release.Name }}-bot
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: BOT_TOKEN
+            - name: GETGEOAPI_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: GETGEOAPI_KEY
+            - name: REDIS_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: REDIS_BASE_URL
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: DATABASE_URL
         - name: {{ .Release.Name }}-celery
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["celery"]
+          args: ["-A", "core", "worker", "-l", "info", "-P", "prefork", "-c", "2", "-E", "-B"]
+          env:
+            - name: BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: BOT_TOKEN
+            - name: GETGEOAPI_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: GETGEOAPI_KEY
+            - name: REDIS_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: REDIS_BASE_URL
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: DATABASE_URL
