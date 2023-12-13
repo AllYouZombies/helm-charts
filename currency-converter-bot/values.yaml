@@ -10,7 +10,6 @@ revisionHistoryLimit: 3
 env:
   botToken: ""
   getGeoApiKey: ""
-  redisBaseUrl: ""
   databaseUrl: ""
 
 image:
