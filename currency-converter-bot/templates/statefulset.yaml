@@ -3,23 +3,18 @@ kind: StatefulSet
 metadata:
   name: {{ .Release.Name }}-redis
   namespace: {{ .Release.Namespace }}
-  labels:
-      app: redis
-      chart: redis-{{ .Chart.Version }}
-      release: {{ .Release.Name }}
-      heritage: {{ .Release.Service }}
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   serviceName: {{ .Release.Name }}-redis
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ .Release.Name }}-redis
       tier: redis
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{ .Release.Name }}-redis
         tier: redis
     spec:
       containers:
@@ -39,7 +34,11 @@ spec:
           limits:
             cpu: 100m
             memory: 100Mi
-      volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: {{ .Release.Name }}-redis
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi

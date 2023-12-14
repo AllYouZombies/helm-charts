@@ -29,7 +29,7 @@ spec:
                   name: {{ .Release.Name }}-secret
                   key: GETGEOAPI_KEY
             - name: REDIS_BASE_URL
-              value: "{{ .Release.Name }}-redis.{{ .Release.Namespace }}.svc.cluster.local:6379"
+              value: "redis://{{ .Release.Name }}-redis.{{ .Release.Namespace }}.svc.cluster.local:6379"
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
@@ -51,7 +51,7 @@ spec:
                   name: {{ .Release.Name }}-secret
                   key: GETGEOAPI_KEY
             - name: REDIS_BASE_URL
-              value: "{{ .Release.Name }}-redis.{{ .Release.Namespace }}.svc.cluster.local:6379"
+              value: "redis://{{ .Release.Name }}-redis.{{ .Release.Namespace }}.svc.cluster.local:6379"
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
