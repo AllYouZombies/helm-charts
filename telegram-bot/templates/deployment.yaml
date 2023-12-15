@@ -23,11 +23,6 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-secret
                   key: BOT_TOKEN
-            - name: GETGEOAPI_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-secret
-                  key: GETGEOAPI_KEY
             - name: REDIS_BASE_URL
               value: "redis://{{ .Release.Name }}-redis.{{ .Release.Namespace }}.svc.cluster.local:6379"
             - name: DATABASE_URL
@@ -45,11 +40,6 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-secret
                   key: BOT_TOKEN
-            - name: GETGEOAPI_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-secret
-                  key: GETGEOAPI_KEY
             - name: REDIS_BASE_URL
               value: "redis://{{ .Release.Name }}-redis.{{ .Release.Namespace }}.svc.cluster.local:6379"
             - name: DATABASE_URL
