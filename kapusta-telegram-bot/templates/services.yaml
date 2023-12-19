@@ -5,12 +5,12 @@ metadata:
   labels:
     app: {{ .Release.Name }}-redis
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.redis.service.type }}
   ports:
-  - port: {{ .Values.service.port }}
-    targetPort: {{ .Values.service.port }}
+  - port: {{ .Values.redis.service.port }}
+    targetPort: {{ .Values.redis.service.port }}
     protocol: TCP
-    name: {{ .Values.service.name }}
+    name: {{ .Values.redis.service.name }}
   selector:
     app: {{ .Release.Name }}-redis
     tier: redis

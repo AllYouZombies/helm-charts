@@ -12,7 +12,7 @@ env:
   databaseUrl: ""
 
 image:
-  repository: registry.anttek.io/kapusta/telegram-currency-converter-bot
+  repository: registry.anttek.io/kapusta/telegram-bot
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -46,10 +46,11 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 6379
-  name: redis
+redis:
+  service:
+    type: ClusterIP
+    port: 6379
+    name: redis
 
 ingress:
   enabled: false
