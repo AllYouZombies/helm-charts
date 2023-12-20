@@ -75,3 +75,20 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-secret
                   key: DATABASE_URL
+          readinessProbe:
+            exec:
+              command:
+                - celery
+                - -A
+                - core
+                - inspect
+                - ping
+          livenessProbe:
+            exec:
+              command:
+                - celery
+                - -A
+                - core
+                - inspect
+                - ping
+---
