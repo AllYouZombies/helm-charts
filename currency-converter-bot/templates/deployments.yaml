@@ -83,6 +83,7 @@ spec:
                 - core
                 - inspect
                 - ping
+            timeoutSeconds: 3
           livenessProbe:
             exec:
               command:
@@ -91,4 +92,5 @@ spec:
                 - core
                 - inspect
                 - ping
+            timeoutSeconds: 3
 ---
