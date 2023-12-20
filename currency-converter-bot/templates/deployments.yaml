@@ -35,6 +35,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Release.Name }}-secret
                   key: DATABASE_URL
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -93,4 +94,5 @@ spec:
                 - inspect
                 - ping
             timeoutSeconds: 5
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
 ---
