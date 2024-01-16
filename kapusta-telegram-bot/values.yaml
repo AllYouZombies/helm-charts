@@ -12,7 +12,7 @@ env:
   databaseUrl: ""
 
 image:
-  repository: registry.anttek.io/kapusta/telegram-bot
+  repository: registry.astafeev.dev/kapusta/telegram-bot
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
